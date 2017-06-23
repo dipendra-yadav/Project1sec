@@ -1,3 +1,4 @@
+
 package com.niit.config;
 
 import java.util.Properties;
