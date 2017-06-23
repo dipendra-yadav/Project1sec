@@ -31,19 +31,22 @@ protected void configure(HttpSecurity http) throws Exception {
 	.antMatchers("/adminHome").access("hasRole('ROLE_ADMIN')")
 	.antMatchers("/manage_product_**").access("hasRole('ROLE_ADMIN')")
 	.antMatchers("/manage_supplier_**").access("hasRole('ROLE_ADMIN')")
-	.antMatchers("/manager_category_**").access("hasRole('ROLE_ADMIN')")
+	.antMatchers("/manage_category_**").access("hasRole('ROLE_ADMIN')")
 	
 	.and()
 	.formLogin().loginPage("/login")
-	.loginProcessingUrl("j_spring_security_check")
+	.loginProcessingUrl("/j_spring_security_check")
 	.usernameParameter("j_username")
 	.passwordParameter("j_password")
 	.defaultSuccessUrl("/home")
 	.failureUrl("/login?error")
 	.and()
 	.logout()
-	.invalidateHttpSession(true)
+	.logoutUrl("/j_spring_security_logout")
 	.logoutSuccessUrl("/login?logout")
+	.invalidateHttpSession(true)
+	
+	
 	.and()
 	.csrf()
 	.and()
@@ -54,14 +57,24 @@ protected void configure(HttpSecurity http) throws Exception {
 
 //<security:authentication-manager>
 //<security:authentication-provider>
-
+/*
 public  void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		System.out.println("configureGlobal called*******");
 		auth.jdbcAuthentication().dataSource(datasource)
 		.usersByUsernameQuery("select name,password,enabled,from user where name=?")
 		.authoritiesByUsernameQuery("select name,role from user where name=?");
-}	
+}	*/
 	
+
+@Autowired
+public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+	 System.out.println("configAuthentication called****");
+  auth.jdbcAuthentication().dataSource(datasource).usersByUsernameQuery(
+		"select name,password, enabled from user where name=?")
+	.authoritiesByUsernameQuery(
+		"select name, role from user where name=?");
+}
+
 }
 	
 	

@@ -24,7 +24,7 @@
 		<p>Powered by Deependra</p>
 		<p>
 			Contact information: <a href="mailto:someone@example.com">
-				deependra.yadav@niit.com</a>.
+				dipendra.eng@gmail.com</a>.
 		</p>
 	</footer>
 

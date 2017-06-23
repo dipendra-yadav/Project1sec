@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -36,13 +37,15 @@ body {
 
 			Search: <input type="text" data-ng-model="searchCondition">
 
+            <security:authorize access="hasRole('ROLE_ADMIN')">
 			<center>
 				<h2>Manage Products</h2>
 
-				<a href="manage_product_create" class="btn btn-primary"
+				<a href="/manage_product_create" class="btn btn-primary"
 					role="button">Add Product</a>
 
 			</center>
+			</security:authorize>
 
 			<br /> 
 

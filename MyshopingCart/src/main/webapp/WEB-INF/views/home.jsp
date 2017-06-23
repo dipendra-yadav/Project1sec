@@ -49,12 +49,12 @@ body {
 </head>
 <body>
 
-	<fmt:message key="welcome" />
+	<%-- <fmt:message key="welcome" />
 	&nbsp;&nbsp;${uname}
+ --%>
 
 
-
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<%--<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -91,7 +91,7 @@ body {
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-
+ --%>
 
 	<br>
 
