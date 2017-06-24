@@ -48,25 +48,32 @@
 				<li><a href="<c:url value="/home"/>">Home</a></li>
 				<li><a href="<c:url value="/aboutUs"/>">About us</a></li>
 				<c:if test="${pageContext.request.userPrincipal.name !=null}">
-				   <security:authorize access="hasRole('ROLE_ADMIN')">
-				
-				
-				   <li><a href="<c:url value="/getAllProducts"/>">Products</a></li>
+				        <security:authorize access="hasRole('ROLE_ADMIN')">
+								
+								<li><a href="<c:url value="/getAllProducts"/>">Products</a></li>
+								<li><a href="<c:url value="/getAllCategories"/>">Categories</a></li>
+				   				<li><a href="<c:url value="/getAllSuppliers"/>">Suppliers</a></li>
 
-	               <li><a href="<c:url value="/getAllCategories"/>">
-						Categories</a></li>
-				   <li><a href="<c:url value="/getAllSuppliers"/>">
-						Suppliers</a></li>
-
-               </security:authorize>
+               			</security:authorize>
+                        <security:authorize access="hasRole('ROLE_USER')">
+                  				<li><a href="<c:url value="/getAllProducts"/>">Products</a></li> 
+				  				<li><a href="<c:url value="/cart/getCartId"></c:url>">Cart</a></li>
+			   			</security:authorize>
                
-               <security:authorize access="hasRole('ROLE_USER')">
-                  <li><a href="<c:url value="/getAllProducts"/>">
-						Products</a></li> 
-               </security:authorize>
+                                <li><a href="<c:url value="/login"/>">login</a></li>
+				   				<c:url value="/customer/registration" var="url"></c:url>
+				 				<li><a href="${url }">Register</a></li>
                
               
                </c:if>
+               
+               <c:if test="${pageContext.request.userPrincipal.name != null}">
+                       			<li><a>Welcome  ${pageContext.request.userPrincipal.name}</a> </li>| 
+                       			<li><a href="javascript:formSubmit()"> Logout</a></li>
+                      
+               </c:if>
+          
+				 
                
                <c:url value="/j_spring_security_logout" var="logoutUrl" />
                <form action="${logoutUrl}" method="post" id="logoutForm">
@@ -78,21 +85,10 @@
 		                 }
 	            </script>
                
-               <c:if test="${pageContext.request.userPrincipal.name != null}">
-                       <li><a>Welcome  ${pageContext.request.userPrincipal.name}</a> </li>| 
-                       <li><a href="javascript:formSubmit()"> Logout</a></li>
-                      
-               </c:if>
-          
-
+             
+                
 			
 				
-				<c:if test="${pageContext.request.userPrincipal.name==null}">
-				  <li><a href="<c:url value="/login"/>">login</a></li>
-				    <c:url value="/registration" var="url"></c:url>
-				  <li><a href="${url }">Register</a></li>
-               </c:if>
-
              
 			</ul>
 		</div>

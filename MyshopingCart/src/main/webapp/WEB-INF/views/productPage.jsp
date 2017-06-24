@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html >
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page isELIgnored="false"%>
+<!DOCTYPE html >
 
 <html>
 <head>
@@ -22,7 +22,7 @@ body {
 }
 </style>
 
-<script src="<c:url value="/resources/js/controller.js" /> "></script>
+<script src="<c:url value="/resource/js/controller.js" /> "></script>
 <%@ include file="header.jsp"%>
 
 </head>
@@ -37,7 +37,7 @@ body {
 			<div data-ng-app="myapp">
 
 				<div class="productimage">
-					<c:url var="url" value="/resources/images/${product.id}.png"></c:url>
+					<c:url var="url" value="/resource/images/${product.id}.png"></c:url>
 					<img class="img-responsive col-md-8 col-md-offset-2" id="myImg"
 						src="${url }" align="right" width: 10%" />
 				</div>

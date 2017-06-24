@@ -1,9 +1,12 @@
 package com.niit.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -12,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "user")
 @Component
 
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +29,10 @@ public class User {
 	private String role;
 
 	private boolean enabled;
+
+	// HAS-A
+	@OneToOne(mappedBy = "user")
+	private Customer customer;
 
 	// getters +setters
 
@@ -75,6 +82,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

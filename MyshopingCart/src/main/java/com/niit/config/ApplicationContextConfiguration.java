@@ -1,6 +1,5 @@
 package com.niit.config;
 
-
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -19,8 +18,13 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.domain.BillingAddress;
+import com.niit.domain.Cart;
+import com.niit.domain.CartItem;
 import com.niit.domain.Category;
+import com.niit.domain.Customer;
 import com.niit.domain.Product;
+import com.niit.domain.ShippingAddress;
 import com.niit.domain.Supplier;
 import com.niit.domain.User;
 
@@ -68,7 +72,8 @@ public class ApplicationContextConfiguration {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.scanPackages("com.niit.*");
-		sessionBuilder.addAnnotatedClasses(User.class, Product.class, Category.class, Supplier.class);
+		sessionBuilder.addAnnotatedClasses(User.class, Product.class, Category.class, Supplier.class, Cart.class,
+				CartItem.class, Customer.class, BillingAddress.class, ShippingAddress.class);
 
 		return sessionBuilder.buildSessionFactory();
 
