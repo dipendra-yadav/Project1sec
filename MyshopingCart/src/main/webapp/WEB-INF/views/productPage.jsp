@@ -16,62 +16,65 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="<c:url value="/resource/js/controller.js"></c:url>"></script>
+
+
+<%@ include file="header.jsp"%>
+
 <style type="text/css">
 body {
 	background-image: url('http://cdn.dcodes.net/2/bg_images/wood/w15.jpg');
 }
 </style>
 
-<script src="<c:url value="/resource/js/controller.js" /> "></script>
-<%@ include file="header.jsp"%>
 
 </head>
+<body data-ng-app="myapp">
+	<div class="bg-img">
+		<div class="container-fluid ">
 
-<div class="bg-img">
-	<div class="container-fluid ">
 
+			<div
+				class="productdetails col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 
-		<div
-			class="productdetails col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+				<div>
 
-			<div data-ng-app="myapp">
+					<div class="productimage">
+						<c:url var="url" value="/resource/images/${product.id}.png"></c:url>
+						<img class="img-responsive col-md-8 col-md-offset-2" id="myImg"
+							src="${url }" align="right" width: 10%" />
+					</div>
+					<!--<c:url value="/cart/add/${product.id}" var="carturl"></c:url>-->
 
-				<div class="productimage">
-					<c:url var="url" value="/resource/images/${product.id}.png"></c:url>
-					<img class="img-responsive col-md-8 col-md-offset-2" id="myImg"
-						src="${url }" align="right" width: 10%" />
-				</div>
-				<!--<c:url value="/cart/add/${product.id}" var="carturl"></c:url>-->
+					<div data-ng-controller="productController">
+						<div class="addcarticon">
+							<a href="" data-ng-click="addToCart(${product.id})"
+								class=" btn btn-info btn-lg"> <span
+								class="glyphicon glyphicon-shopping-cart"></span>Add to Cart
+							</a>
 
-				<div data-ng-controller="productController">
-					<div class="addcarticon">
-						<a href="" data-ng-click="addToCart(${product.id})"
-							class=" btn btn-info btn-lg"> <span
-							class="glyphicon glyphicon-shopping-cart"></span>Add to Cart
-						</a>
-
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="details">
-				<h4>Product</h4>
-				${product.name }<br /> <br /> by <b> ${product.supplier.name }</b>
-				<h4>Price</h4>
-				${product.price} <br /> <br />
-				<h4>Description</h4>
-				${product.description} <br /> <br />
-				<h4>Category</h4>
-				${product.category.name } <br /> <br />
-				<h4>Product ID</h4>
-				${product.id }<br /> <br /> <br />
-			</div>
-			<div>
-				<a href="<c:url value="/getAllProducts"></c:url>"
-					class="btn btn-info btn-lg">Back</a>
+				<div class="details">
+					<h4>Product</h4>
+					${product.name }<br /> <br /> by <b> ${product.supplier.name }</b>
+					<h4>Price</h4>
+					${product.price} <br /> <br />
+					<h4>Description</h4>
+					${product.description} <br /> <br />
+					<h4>Category</h4>
+					${product.category.name } <br /> <br />
+					<h4>Product ID</h4>
+					${product.id }<br /> <br /> <br />
+				</div>
+				<div>
+					<a href="<c:url value="/getAllProducts"></c:url>"
+						class="btn btn-info btn-lg">Back</a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<%@ include file="footer.jsp"%>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

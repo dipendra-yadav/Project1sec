@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.niit.dao.CartDAO;
@@ -31,11 +32,11 @@ public class CartItemController {
 
 	@Autowired
 	CartItemDAO cartItemdao;
-	
-	@Autowired
-	CartDAO  cartdao;
 
-	@RequestMapping("/cart/add/{productId}")
+	@Autowired
+	CartDAO cartdao;
+
+	@RequestMapping(value="/cart/add/{productId}",method=RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addCartItem(@PathVariable(value = "productId") int productId) {
 
@@ -43,6 +44,7 @@ public class CartItemController {
 																									// user
 
 		String username = user.getUsername();
+		System.out.println("*******************************logged in user=" + username);
 		Customer customer = cdao.getCustomerByUsername(username);// get customer
 
 		Cart cart = customer.getCart();// get cart

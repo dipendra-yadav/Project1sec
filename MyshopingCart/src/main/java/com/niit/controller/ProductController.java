@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -78,7 +79,8 @@ public class ProductController {
 
 	// add ProductgetProductByID
 	// method 2 for add Product
-	@RequestMapping(value = "/manage_product_create",method=RequestMethod.POST)
+	//@RequestMapping(value = "/manage_product_create",method=RequestMethod.POST)
+	@PostMapping("/manage_product_create")
 	public ModelAndView createProduct(@Valid @ModelAttribute(value = "createProductObj") Product product,
 			MultipartFile file, Model model, BindingResult result) {
 		System.out.println("createProduct called****");

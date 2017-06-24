@@ -41,7 +41,7 @@ body {
 			<center>
 				<h2>Manage Products</h2>
 
-				<a href="/manage_product_create" class="btn btn-primary"
+				<a href="manage_product_create" class="btn btn-primary"
 					role="button">Add Product</a>
 
 			</center>

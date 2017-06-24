@@ -1,0 +1,5 @@
+insert into  product values(1,'mvc','spring web mvc','2000',1,1);
+insert into  product values(2,'orm','Hibernate in action','2001',1,1);
+insert into  product values(3,'web technologies','Java script','2002',1,1);
+insert into  product values(4,'java 8','Java','500',1,1);
+insert into  product values(5,'mvc-2','struts','999',1,1);
