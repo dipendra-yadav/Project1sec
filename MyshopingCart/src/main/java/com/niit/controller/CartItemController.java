@@ -36,7 +36,7 @@ public class CartItemController {
 	@Autowired
 	CartDAO cartdao;
 
-	@RequestMapping(value="/cart/add/{productId}",method=RequestMethod.POST)
+	@RequestMapping(value="/cart/add/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addCartItem(@PathVariable(value = "productId") int productId) {
 

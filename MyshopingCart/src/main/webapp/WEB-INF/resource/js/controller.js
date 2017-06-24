@@ -11,7 +11,7 @@ var myapp = angular.module("myapp", []).controller("productController",function(
 			// to add a Product to the cart
 			$scope.addToCart = function(productId) {
 				alert('entering the addToCart **');
-				$http.post('http://localhost:1010/MyshopingCart/cart/add'+ productId).success(function() {
+				$http.put('http://localhost:1010/MyshopingCart/cart/add/'+ productId).success(function() {
 							alert('Product Added Successfully');
 						})
 			}
