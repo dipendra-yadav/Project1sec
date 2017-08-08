@@ -173,7 +173,7 @@
 
 
 	<build>
-		<finalName>MyshopingCart</finalName>
+		<finalName>MyshopingCart_1</finalName>
 		<plugins>
 
 			<plugin>
