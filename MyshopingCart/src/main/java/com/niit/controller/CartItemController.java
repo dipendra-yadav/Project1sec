@@ -36,7 +36,7 @@ public class CartItemController {
 	@Autowired
 	CartDAO cartdao;
 
-	@RequestMapping(value="/cart/add/{productId}")
+	@RequestMapping(value = "/cart/add/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void addCartItem(@PathVariable(value = "productId") int productId) {
 
@@ -68,6 +68,13 @@ public class CartItemController {
 			}
 
 		}
+
+		CartItem cartItem = new CartItem();
+		cartItem.setQuantity(1);
+		cartItem.setProduct(product);// set product id
+		cartItem.setTotalPrice(product.getPrice() * 1);
+		cartItem.setCart(cart);// set cart id
+		cartItemdao.addCartItem(cartItem);// insert query
 
 	}
 

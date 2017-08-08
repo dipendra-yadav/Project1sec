@@ -23,7 +23,8 @@ DataSource  datasource;
 protected void configure(HttpSecurity http) throws Exception {
 	System.out.println("configure called******");
 	
-	http.authorizeRequests()
+	http.csrf().disable()
+	.authorizeRequests()
 	.antMatchers("/").access("permitAll")
 	.antMatchers("/home").access("permitAll")
 	.antMatchers("/login").access("permitAll")
@@ -47,8 +48,7 @@ protected void configure(HttpSecurity http) throws Exception {
 	.invalidateHttpSession(true)
 	
 	
-	.and()
-	.csrf()
+	
 	.and()
 	.exceptionHandling().accessDeniedPage("/invalid-access");
 	

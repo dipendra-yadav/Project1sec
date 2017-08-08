@@ -31,7 +31,8 @@ body {
 
 	<c:url value="/manage_product_create" var="url"></c:url>
 
-	<form:form  method="post"  action="${url }"  commandName="createProductObj" enctype="multipart/form-data">
+	<form:form method="post" action="${url}"
+		commandName="createProductObj" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><form:label path="id">Product Id</form:label></td>
@@ -82,6 +83,7 @@ body {
 				<td colspan="2"><input type="submit" value="Add Product"
 					class="btn btn-default"></td>
 			</tr>
+
 		</table>
 	</form:form>
 

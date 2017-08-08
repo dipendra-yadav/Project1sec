@@ -16,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,15 +35,19 @@ public class ProductController {
 
 	@Autowired
 	private ProductDAO productDAO;
+	
 	@Autowired
 	private Product product;
+	
 	@Autowired(required = true)
 	private CategoryDAO categoryDAO;
+	
 	@Autowired
 	private Category category;
 
 	@Autowired(required = true)
 	private SupplierDAO supplierDAO;
+	
 	@Autowired
 	private Supplier supplier;
 
@@ -69,23 +73,21 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView("createProductForm");
 		mv.addObject("createProductObj", product);
 		mv.addObject("productList", this.productDAO.list());
-		mv.addObject("category", new Category());
+		mv.addObject("category", category);
 		mv.addObject("categoryList", this.categoryDAO.list());
-		mv.addObject("supplier", new Supplier());
+		mv.addObject("supplier", supplier);
 		mv.addObject("supplierList", this.supplierDAO.list());
 		return mv;
 
 	}
 
-	// add ProductgetProductByID
+	// add Product
 	// method 2 for add Product
-	//@RequestMapping(value = "/manage_product_create",method=RequestMethod.POST)
-	@PostMapping("/manage_product_create")
+	@RequestMapping(value = "/manage_product_create", method = RequestMethod.POST)
 	public ModelAndView createProduct(@Valid @ModelAttribute(value = "createProductObj") Product product,
 			MultipartFile file, Model model, BindingResult result) {
 		System.out.println("createProduct called****");
-		ModelAndView mv = new ModelAndView("adminHome");
-		// Validations are Happening Here
+		ModelAndView mv = new ModelAndView("home");
 		if (result.hasErrors())
 			return new ModelAndView("createProductForm");
 
@@ -106,9 +108,8 @@ public class ProductController {
 			if (prodImage != null || !prodImage.isEmpty()) {
 
 				// store this Image
-				Path paths = Paths
-						.get("D:\\Workspaces_Ka_Baap\\Workspace_EnterpriseJavadevOps\\MyshopingCart_JavaMail\\src\\main\\webapp\\WEB-INF\\resource\\images"
-								+ product.getId() + ".png");
+				Path paths = Paths.get("D:\\Workspaces_Ka_Baap\\Workspace_EnterpriseJavadevOps\\MyshopingCart_JavaMail\\src\\main\\webapp\\WEB-INF\\resource\\images"
+						+ product.getId() + ".png");
 				try {
 					prodImage.transferTo(new File(paths.toString()));
 				} catch (IllegalStateException e) {
@@ -122,6 +123,16 @@ public class ProductController {
 		return mv;
 
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 	// delete Product
 	@RequestMapping(value = "/manage_product_delete/{id}", method = RequestMethod.GET)

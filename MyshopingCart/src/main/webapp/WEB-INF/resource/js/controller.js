@@ -1,5 +1,7 @@
 var myapp = angular.module("myapp", []).controller("productController",function($scope, $http) {
 			
+	
+	        $scope.cart
 			// To get all products
 			$scope.getAllProducts = function() {
 				alert('entering the getAllProducts ***');
@@ -19,8 +21,7 @@ var myapp = angular.module("myapp", []).controller("productController",function(
 			// to refresh the cart
 			$scope.refreshCart = function(cartId) {
 				alert("entering the refresh cart");
-				$http.get('http://localhost:1010/MyshopingCart/cart/getCart/'
-								+ cartId).success(function(data) {
+				$http.get('http://localhost:1010/MyshopingCart/cart/getCart/'+ cartId).success(function(data) {
 					$scope.cart = data;
 				})
 			}
@@ -36,16 +37,17 @@ var myapp = angular.module("myapp", []).controller("productController",function(
 
 			// to remove a product o from the cart
 			$scope.removeFromCart = function(cartItemId) {
-				$http.put(
-						'http://localhost:1010/MyshopingCart/cart/removecartitem/'
-								+ cartItemId).success(function() {
+				alert("entering the removeFromCart");
+				
+				$http.put('http://localhost:1010/MyshopingCart/cart/removecartitem/'+ cartItemId).success(function() {
 								$scope.refreshCart($scope.cartId);
-				})
+				});
 			}
 
 			// to clear the cart
-			$scope.clearCart = function(cartId) {
-				$http.put('http://localhost:1010/MyshopingCart/cart/removeAllItems/'+ cartId).success(function() {
+			$scope.clearCart = function(cartId) {	
+				alert("entering the clearCart***");
+			    $http.put('http://localhost:1010/MyshopingCart/cart/removeAllItems/'+ cartId).success(function() {
 					$scope.refreshCart($scope.cartId);
 				});
 			}
@@ -55,11 +57,9 @@ var myapp = angular.module("myapp", []).controller("productController",function(
 				alert("calculateGrandTotal**");
 				var grandTotal = 0.0
 				for (var i = 0; i < $scope.cart.cartItems.length; i++) {
-					grandTotal = grandTotal
-							+ $scope.cart.cartItems[i].totalPrice;
+					grandTotal = grandTotal + $scope.cart.cartItems[i].totalPrice;
 				}
-
-				return grandTotal;
+                return grandTotal;
 			}
 
 		});

@@ -98,7 +98,7 @@ public class UserController {
 	@RequestMapping(value = "/customer/registration", method = RequestMethod.GET)
 	public ModelAndView getRegistrationForm() {
 		Customer customer = new Customer();
-		User user = new User();
+		
 		
 		BillingAddress billingAddress = new BillingAddress();
 		ShippingAddress shippingAddress = new ShippingAddress();
